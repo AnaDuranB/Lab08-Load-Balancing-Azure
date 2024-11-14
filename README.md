@@ -561,15 +561,42 @@ newman run ARSW_LOAD-BALANCING_AZURE.postman_collection.json -e [ARSW_LOAD-BALAN
 **Preguntas**
 
 * ¿Cuáles son los tipos de balanceadores de carga en Azure y en qué se diferencian?, ¿Qué es SKU, qué tipos hay y en qué se diferencian?, ¿Por qué el balanceador de carga necesita una IP pública?
-
+   * Los equilibradores de carga internos, que equilibran la carga del tráfico dentro de una red virtual. Los equilibradores de carga externos, que equilibran la carga del tráfico externo a un punto de conexión conectado a Internet.
+   * Azure ofrece dos SKU: básica y estándar. La SKU básica es gratuita, mientras que la estándar requiere un costo de consumo mensual. Las SKU tienen diferentes funcionalidades de rendimiento, de seguridad y de seguimiento del estado.
+   * Un balanceador de carga necesita una IP pública para poder gestionar el tráfico que proviene de usuarios fuera de la red privada de Azure. La IP pública permite que las solicitudes externas lleguen al balanceador, que luego distribuye este tráfico entre las máquinas virtuales (VMs) o instancias que tiene en el backend. Sin una IP pública, el balanceador no podría ser accesible desde Internet, limitando su capacidad para manejar el tráfico que llega desde clientes externos o aplicaciones que necesitan conectarse a los servicios alojados en Azure.
    
 * ¿Cuál es el propósito del *Backend Pool*?
+   * Agrupa las máquinas virtuales o recursos que van a recibir el tráfico de entrada desde el balanceador de carga. Es la colección de servidores o instancias que procesan las solicitudes enviadas por los usuarios a través del balanceador.
+     
 * ¿Cuál es el propósito del *Health Probe*?
+   * Es utilizado para comprobar la disponibilidad y estado de salud de los recursos en el backend (como las VMs). Si una VM no responde o no está disponible, el balanceador de carga redirige el tráfico a otros servidores saludables en el pool.
+     
 * ¿Cuál es el propósito de la *Load Balancing Rule*? ¿Qué tipos de sesión persistente existen, por qué esto es importante y cómo puede afectar la escalabilidad del sistema?.
+   * La Load Balancing Rule define cómo se distribuye el tráfico entre las máquinas virtuales en el backend. También establece el puerto y el protocolo a usar, y cómo manejar las conexiones entre las instancias. La sesión persistente también se configura en este nivel.
+      * Tipos de sesión persistente:
+      *    IP Affinity: Garantiza que las solicitudes de una IP específica siempre se dirijan al mismo servidor.
+      *    Cookie-based Affinity: Utiliza cookies para garantizar que un cliente siga siendo dirigido al mismo servidor durante toda su sesión.
+        
 * ¿Qué es una *Virtual Network*? ¿Qué es una *Subnet*? ¿Para qué sirven los *address space* y *address range*?
+   * Virtual Network (VNet): Es una red privada que conecta los recursos dentro de Azure, como máquinas virtuales y bases de datos. Permite la comunicación segura y controlada entre los recursos.
+   * Subnet: Es una subdivisión de la VNet. Organiza el tráfico y la distribución de direcciones IP dentro de una VNet.
+   * Address Space y Address Range: El Address Space define el rango de direcciones IP que estarán disponibles dentro de la red. El Address Range es un subconjunto del espacio de direcciones, usado para asignar direcciones IP a los recursos dentro de la VNet.
+     
 * ¿Qué son las *Availability Zone* y por qué seleccionamos 3 diferentes zonas?. ¿Qué significa que una IP sea *zone-redundant*?
+   * Las Availability Zones son ubicaciones físicas separadas dentro de una región de Azure que tienen su propio suministro de energía, refrigeración y red. Seleccionar 3 zonas diferentes asegura alta disponibilidad y resiliencia, ya que si una zona falla, las otras continúan funcionando sin interrumpir el servicio.
+   * IP zone-redundant: Significa que la dirección IP está distribuida entre múltiples zonas para asegurar que siga estando disponible incluso si una zona falla.
 * ¿Cuál es el propósito del *Network Security Group*?
+   * El Network Security Group (NSG) se utiliza para controlar el tráfico de red hacia y desde los recursos en una VNet. Permite establecer reglas de acceso de entrada y salida basadas en direcciones IP, puertos y protocolos, mejorando la seguridad de la infraestructura al permitir o denegar el tráfico según las configuraciones definidas.
+     
 * Informe de newman 1 (Punto 2)
+   * Escalado Vertical:
+      * ![image](https://github.com/user-attachments/assets/b3a0287d-d1ee-4d82-9e94-70041fe60b5b)
+        
+   * Escalado Horizontal:
+      * ![image](https://github.com/user-attachments/assets/137d6161-d337-4d79-8821-39e743c5a12f)
+        
+   * Con escalado vertical el tiempo total de duración fue de 6 minutos y 46 segundos y con el escalado horizontal el tiempo total de duración fue de 2 minutos y 45 segundos. La diferencia en los tiempos de ejecución destaca la eficiencia del escalado horizontal, que permite distribuir la carga entre varias instancias, reduciendo significativamente el tiempo total de procesamiento y mejorando la capacidad de respuesta del sistema.
+     
 * Presente el Diagrama de Despliegue de la solución.
 
 
