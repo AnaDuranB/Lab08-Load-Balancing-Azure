@@ -468,6 +468,42 @@ forever start FibonacciApp.js
 
 Realice este proceso para las 3 VMs, por ahora lo haremos a mano una por una, sin embargo es importante que usted sepa que existen herramientas para aumatizar este proceso, entre ellas encontramos Azure Resource Manager, OsDisk Images, Terraform con Vagrant y Paker, Puppet, Ansible entre otras.
 
+- VM2
+
+   ![image](https://github.com/user-attachments/assets/3fff5fdf-d537-476b-9730-b281cf4a1d71)
+   
+   ![image](https://github.com/user-attachments/assets/f192f585-14c5-4cce-afec-01cc1cd1ec65)
+   
+   ![image](https://github.com/user-attachments/assets/202ce8f6-43e9-4f8e-8be0-bf02e56045ab)
+   
+   ![image](https://github.com/user-attachments/assets/fa6d7b67-ab9f-44b4-9a0e-c915d5b983d2)
+   
+   ![image](https://github.com/user-attachments/assets/7af6068e-af29-4ca5-a0c9-2affec37dfba)
+   
+   ![image](https://github.com/user-attachments/assets/456bd655-fbc7-43e0-b48f-a70bd6147a69)
+   
+   ![image](https://github.com/user-attachments/assets/b70de908-dc90-448d-91be-498b5b66b1a2)
+
+- VM3
+
+  ![image](https://github.com/user-attachments/assets/f511e489-66ea-49f5-a106-d4bfef2f30db)
+
+  ![image](https://github.com/user-attachments/assets/eeb8e33b-6d95-4b94-8a6e-88836f9f91ae)
+
+  ![image](https://github.com/user-attachments/assets/2f445a6d-a6ed-4a8d-a4bc-761ae3df34b3)
+
+  ![image](https://github.com/user-attachments/assets/9f715808-265b-435b-8065-df92ec081b8e)
+
+  ![image](https://github.com/user-attachments/assets/fa40af15-0f15-4ae3-9a12-219abd6c4405)
+
+  ![image](https://github.com/user-attachments/assets/7644e993-4ef2-4e79-a284-34de9a1353ad)
+
+  ![image](https://github.com/user-attachments/assets/7437f553-ca60-4338-ab1e-c6cf15ce5c9e)
+
+  ![image](https://github.com/user-attachments/assets/c9be4a9a-06de-4b7b-90ff-da8256e7e405)
+
+
+
 #### Probar el resultado final de nuestra infraestructura
 
 1. Porsupuesto el endpoint de acceso a nuestro sistema será la IP pública del balanceador de carga, primero verifiquemos que los servicios básicos están funcionando, consuma los siguientes recursos:
@@ -476,8 +512,26 @@ Realice este proceso para las 3 VMs, por ahora lo haremos a mano una por una, si
 http://52.155.223.248/
 http://52.155.223.248/fibonacci/1
 ```
+![image](https://github.com/user-attachments/assets/bf2981fd-4213-41d9-8e0b-2d8f15199631)
+
+![image](https://github.com/user-attachments/assets/fe42f9f1-2c6d-4035-b13d-217c96b98759)
+
 
 2. Realice las pruebas de carga con `newman` que se realizaron en la parte 1 y haga un informe comparativo donde contraste: tiempos de respuesta, cantidad de peticiones respondidas con éxito, costos de las 2 infraestrucruras, es decir, la que desarrollamos con balanceo de carga horizontal y la que se hizo con una maquina virtual escalada.
+
+
+
+![image](https://github.com/user-attachments/assets/4be37975-61f1-42fc-ab29-b1aa0cc389e5)
+
+![image](https://github.com/user-attachments/assets/b717ff84-f972-43c1-b7db-a0d73960bd17)
+
+![image](https://github.com/user-attachments/assets/063f54f2-ce6d-406d-a851-bbf2c1b4efe0)
+
+![image](https://github.com/user-attachments/assets/5e3bad4a-8d26-46dd-88eb-440e974f6122)
+
+![image](https://github.com/user-attachments/assets/68a067c3-53b8-40ad-80a6-a58aa84c40cb)
+
+
 
 3. Agregue una 4 maquina virtual y realice las pruebas de newman, pero esta vez no lance 2 peticiones en paralelo, sino que incrementelo a 4. Haga un informe donde presente el comportamiento de la CPU de las 4 VM y explique porque la tasa de éxito de las peticiones aumento con este estilo de escalabilidad.
 
@@ -488,9 +542,27 @@ newman run ARSW_LOAD-BALANCING_AZURE.postman_collection.json -e [ARSW_LOAD-BALAN
 newman run ARSW_LOAD-BALANCING_AZURE.postman_collection.json -e [ARSW_LOAD-BALANCING_AZURE].postman_environment.json -n 10
 ```
 
+![image](https://github.com/user-attachments/assets/750614cc-cfa5-46cd-95b2-71312de8f70f)
+
+![image](https://github.com/user-attachments/assets/95c0a54d-d471-42a2-aa68-fd0ac623e9cc)
+
+![image](https://github.com/user-attachments/assets/fd588f9b-f90d-41ae-8aeb-f19a07374a27)
+
+![image](https://github.com/user-attachments/assets/c3970fb2-70fa-402b-8501-a30d9ab1f729)
+
+![image](https://github.com/user-attachments/assets/ca136206-87cf-46c9-b07c-9e4607f0538f)
+
+![image](https://github.com/user-attachments/assets/d1ea6dd9-d708-4948-98f7-797b41c0f7a0)
+
+![image](https://github.com/user-attachments/assets/137d6161-d337-4d79-8821-39e743c5a12f)
+
+
+
 **Preguntas**
 
 * ¿Cuáles son los tipos de balanceadores de carga en Azure y en qué se diferencian?, ¿Qué es SKU, qué tipos hay y en qué se diferencian?, ¿Por qué el balanceador de carga necesita una IP pública?
+
+   
 * ¿Cuál es el propósito del *Backend Pool*?
 * ¿Cuál es el propósito del *Health Probe*?
 * ¿Cuál es el propósito de la *Load Balancing Rule*? ¿Qué tipos de sesión persistente existen, por qué esto es importante y cómo puede afectar la escalabilidad del sistema?.
