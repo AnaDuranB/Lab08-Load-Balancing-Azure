@@ -598,6 +598,9 @@ newman run ARSW_LOAD-BALANCING_AZURE.postman_collection.json -e [ARSW_LOAD-BALAN
    * Con escalado vertical el tiempo total de duración fue de 6 minutos y 46 segundos y con el escalado horizontal el tiempo total de duración fue de 2 minutos y 45 segundos. La diferencia en los tiempos de ejecución destaca la eficiencia del escalado horizontal, que permite distribuir la carga entre varias instancias, reduciendo significativamente el tiempo total de procesamiento y mejorando la capacidad de respuesta del sistema.
      
 * Presente el Diagrama de Despliegue de la solución.
+  
+     ![image](https://github.com/user-attachments/assets/c67fd2a6-74f0-4399-8c3c-9342bbfb4ee6)
+
 
 
 
